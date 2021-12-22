@@ -1,3 +1,3 @@
 #!/usr/bin/python3
-for a in range(97, 123):
-    print('{:c}'.format(a), end='')
+for numerito in range(ord("a"), ord("z") + 1):
+    print("{:c}".format(numerito), end="")
