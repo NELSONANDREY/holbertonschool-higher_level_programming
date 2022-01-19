@@ -8,7 +8,6 @@ class Square:
     def __init__(self, size=0):
         """generate atribute private
         self: """
-        
         if type(size) != int:
             raise TypeError('size must be an integer')
         elif size < 0:
