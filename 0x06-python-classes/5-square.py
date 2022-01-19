@@ -1,31 +1,41 @@
 #!/usr/bin/python3
-class Square:
+"""Write a class Square that defines a square by: (based on 3-square.py)
+"""
+
+
+class Square():
+    """Inicializando la funcion inicial.
+    """
+
     def __init__(self, size=0):
         self.__size = size
 
-    # Property
     @property
     def size(self):
         return self.__size
 
-    # Setter modifies
     @size.setter
-    def size(self, value):
-        if type(value) != int:
-            raise TypeError('size must be an integer')
-        elif value < 0:
-            raise ValueError('size must be >= 0')
-        else:
-            self.__size = value
+    def size(self, size=0):
+        """controlamos las exepciones
+        """
+        if type(size) != int:
+            raise TypeError("size must be an integer")
+        elif size < 0:
+            raise ValueError("size must be >= 0")
+        self.__size = size
 
     def area(self):
-        return self.__size ** 2
+        """Returnamos el valor de la operacion"""
+        return (self.__size * self.__size)
 
     def my_print(self):
-        size = self.__size
-
-        if size == 0:
+        """Con la condicional verificamos el tamaño y
+        con los ciclos imprimimos el cuadrado de ##
+        """
+        if self.__size == 0:
             print()
-
-        for row in range(size):
-            print('#' * size)
+        else:
+            for x in range(0, self.__size):
+                for y in range(0, self.__size):
+                    print("#", end="")
+                print()
