@@ -1,15 +1,11 @@
-#!usr/bin/python3
-"""MyList
+#!/usr/bin/python3
+"""Lookup
 """
 
 
-
-class Mylist(list):
-    """contains list
+def lookup(obj):
+    """Function that returns the list of avail. attributes and methods
+    of an object.
     """
 
-    def print_sorted(self)
-    """Prints self in sorted format
-    """
-
-    print(sorted(self))
+    return dir(obj)
