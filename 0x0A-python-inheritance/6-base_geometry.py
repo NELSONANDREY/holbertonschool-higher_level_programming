@@ -1,9 +1,11 @@
 #!/usr/bin/python3
-"""module bass"""
+"""Modulo BaseGeometry que contiene
+un metodo area"""
 
 
-class BaseGeometry():
-    """Base Geometryc"""
+class BaseGeometry:
+    """Clase BaseGeometry"""
 
     def area(self):
-        """define area"""
+        """Genera una excepcion"""
+        raise Exception("area() is not implemented")
