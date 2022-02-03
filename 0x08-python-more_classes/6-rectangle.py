@@ -1,79 +1,86 @@
 #!/usr/bin/python3
-"""Module for print class empty"""
+"""
+Definimos la clase rectangulo
+"""
 
 
 class Rectangle():
-    """class empty"""
+    """Definimos el rectangulo"""
     number_of_instances = 0
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
-        """generate atribute private
-        self: """
+        """Inicializamos una instacia de rectangle"""
         self.width = width
         self.height = height
+        Rectangle.number_of_instances += 1
 
     @property
     def width(self):
-        """method getter, get value of width"""
+        """Obtiene el ancho de una instacia de rectangle"""
         return self.__width
 
     @width.setter
     def width(self, value):
-        """method setter, set value of width"""
+        """Verfiicamos el ancho de una instancia"""
         if type(value) is not int:
             raise TypeError("width must be an integer")
-        elif value < 0:
+        if value < 0:
             raise ValueError("width must be >= 0")
-        else:
-            self.__width = value
-            Rectangle.number_of_instances += 1
+        self.__width = value
 
     @property
     def height(self):
-        """method getter, get value of height"""
+        """Obtenemos la altura de una instacia de rectangle"""
         return self.__height
 
     @height.setter
     def height(self, value):
-        """method setter, set value of height"""
+        """Verificams la altura de una instacia"""
         if type(value) is not int:
             raise TypeError("height must be an integer")
-        elif value < 0:
+        if value < 0:
             raise ValueError("height must be >= 0")
-        else:
-            self.__height = value
+        self.__height = value
 
     def area(self):
-        """calculate area of rectangle"""
-        area = self.__width * self.__height
-        return (area)
+        """Calcula el area de una instancea"""
+        return self.__width * self.__height
 
     def perimeter(self):
-        """calculate perimeter of rectangle"""
-        if self.__height == 0 or self.__width == 0:
-            return (0)
-        per = (self.__width * 2) + (self.__height * 2)
-        return (per)
+        """Calcula el perimetro de una instancea"""
+        if self.__width == 0 or self.__height == 0:
+            return 0
+        return 2 * (self.__width + self.__height)
 
     def __str__(self):
-        """return area print str"""
-        cad = ""
-        if self.__height == 0 or self.__width == 0:
-            return (cad)
-        for i in range(self.__height):
-            for k in range(self.__width):
-                cad = cad + "#"
-            cad = cad + "\n"
-        cad = cad[:-1]
-        return (cad)
+        """Imprime el rectangulo con el caracter #"""
+        if self.__width == 0 or self.__height == 0:
+            return ""
+        return "\n".join(
+            str(self.print_symbol) * self.__width for i in range(self.__height)
+        )
 
     def __repr__(self):
-        """return str repr oficial"""
-        rep = ("Rectangle(" + str(self.__width) +
-            ", " + str(self.__height) + ")")
-        return (rep)
+        """Para poder recrear una nueva instancia,
+        devolvemos la representacion de la cadena"""
+        return ("Rectangle ({:d}, {:d})".format(self.__width, self.__height))
 
     def __del__(self):
-        """delete object"""
-        Rectangle.number_of_instances -= 1
+        """Con el metodo del destruimos
+        la instancia en cuestion"""
         print("Bye rectangle...")
+        Rectangle.number_of_instances -= 1
+
+    @staticmethod
+    def bigger_or_equal(rect_1, rect_2):
+        """Encuentra el rectangulo mas grande basado en el area
+        """
+        if type(rect_1) is not Rectangle:
+            raise TypeError("rect_1 must be an instance of Rectangle")
+        if type(rect_2) is not Rectangle:
+            raise TypeError("rect_2 must be an instance of Rectangle")
+        if rect_1.area() >= rect_2.area():
+            return (rect_1)
+        else:
+            return (rect_2)
