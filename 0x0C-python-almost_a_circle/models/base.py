@@ -45,7 +45,7 @@ class Base:
             else:
                 write_file.write(cls.to_json_string(
                                 [element.to_dictionary() for element in list_objs]))
-    
+
     @classmethod
     def create(cls, **dictionary):
         """pendiente comentario"""
@@ -55,3 +55,7 @@ class Base:
             clastmp == cls(1)
         clastmp.update(**dictionary)
         return clastmp
+
+    def load_from_file(cls):
+        """pendiente comentario"""
+        with open(cls.__name__ + ".json", mode="r") as read_file:
