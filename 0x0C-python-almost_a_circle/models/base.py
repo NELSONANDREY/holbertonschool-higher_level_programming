@@ -2,6 +2,7 @@
 """this is base class"""
 
 
+import csv
 import json
 
 
@@ -67,5 +68,39 @@ class Base:
                 for k in lists_dic:
                     lists.append(cls.create(**k))
                 return lists
+        except Exception:
+            return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Creamos un archivo .csv y le agregamos
+        su contenido"""
+        linea = []
+        with open(cls._name_ + ".csv", "w") as myfile:
+            if list_objs is None or len(list_objs) <= 0:
+                myfile.write('[]')
+            else:
+                if cls._name_ == 'Rectangle':
+                    linea = ["id", "width", "height", "x", "y"]
+                if cls._name_ == 'Square':
+                    linea = ["id", "size", "x", "y"]
+            var = csv.DictWriter(myfile, fieldnames=linea)
+            for iterador2 in list_objs:
+                var.writerow(iterador2.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Lee la funcion save"""
+        try:
+            with open(cls._name_ + ".csv", "r") as myfile:
+                if cls._name_ == 'Rectangle':
+                    linea = ["id", "width", "height", "x", "y"]
+                if cls._name_ == 'Square':
+                    linea = ["id", "size", "x", "y"]
+                readeer = csv.DictReader(myfile, fieldnames=linea)
+                dcts = [dict([clave, int(valor)]
+                        for clave, valor in ltera.items())
+                        for ltera in readeer]
+                return [cls.create(**dicci) for dicci in dcts]
         except Exception:
             return []
