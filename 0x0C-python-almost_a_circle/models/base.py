@@ -73,34 +73,27 @@ class Base:
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        """Creamos un archivo .csv y le agregamos
-        su contenido"""
-        linea = []
-        with open(cls._name_ + ".csv", "w") as myfile:
-            if list_objs is None or len(list_objs) <= 0:
-                myfile.write('[]')
-            else:
-                if cls._name_ == 'Rectangle':
-                    linea = ["id", "width", "height", "x", "y"]
-                if cls._name_ == 'Square':
-                    linea = ["id", "size", "x", "y"]
-            var = csv.DictWriter(myfile, fieldnames=linea)
-            for iterador2 in list_objs:
-                var.writerow(iterador2.to_dictionary())
+        """Saves to csv file
+        """
+
+        res = [item.to_dictionary() for item in list_objs]
+        with open(cls.__name__ + ".csv", mode="w") as save_file:
+            write_to = csv.DictWriter(save_file, res[0].keys())
+            write_to.writeheader()
+            write_to.writerows(res)
 
     @classmethod
     def load_from_file_csv(cls):
-        """Lee la funcion save"""
-        try:
-            with open(cls._name_ + ".csv", "r") as myfile:
-                if cls._name_ == 'Rectangle':
-                    linea = ["id", "width", "height", "x", "y"]
-                if cls._name_ == 'Square':
-                    linea = ["id", "size", "x", "y"]
-                readeer = csv.DictReader(myfile, fieldnames=linea)
-                dcts = [dict([clave, int(valor)]
-                        for clave, valor in ltera.items())
-                        for ltera in readeer]
-                return [cls.create(**dicci) for dicci in dcts]
-        except Exception:
-            return []
+        """Loads from csv file
+        """
+
+        res = []
+        res_dict = {}
+        with open(cls.__name__ + ".csv", mode="r") as read_file:
+            read_from = csv.DictReader(read_file)
+            for item in read_from:
+                for k, v in dict(item).items():
+                    res_dict[k] = int(v)
+                # formatting with create()
+                res.append(cls.create(**res_dict))
+        return res
