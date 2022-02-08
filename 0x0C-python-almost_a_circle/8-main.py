@@ -1,5 +1,26 @@
 #!/usr/bin/python3
-""" 17-main """
+""" 0-main """
+from models.base import Base
+
+if __name__ == "__main__":
+
+    b1 = Base()
+    print(b1.id)
+
+    b2 = Base()
+    print(b2.id)
+
+    b3 = Base()
+    print(b3.id)
+
+    b4 = Base(12)
+    print(b4.id)
+
+    b5 = Base()
+    print(b5.id)
+
+"""#!/usr/bin/python3
+17-main
 from models.rectangle import Rectangle
 
 if __name__ == "__main__":
@@ -12,15 +33,16 @@ if __name__ == "__main__":
     print(r1 is r2)
     print(r1 == r2)
 
-    
-""" 16-main 
+    """
+
+""" 16-main
 
 from models.rectangle import Rectangle
 
 if __name__ == "__main__":
 
     list_input = [
-        {'id': 89, 'width': 10, 'height': 4}, 
+        {'id': 89, 'width': 10, 'height': 4},
         {'id': 7, 'width': 1, 'height': 7}
     ]
     json_list_input = Rectangle.to_json_string(list_input)
@@ -30,7 +52,7 @@ if __name__ == "__main__":
     print("[{}] {}".format(type(list_output), list_output))
 
 
-15-main 
+15-main
 
 from models.rectangle import Rectangle
 
@@ -47,7 +69,7 @@ if __name__ == "__main__":
 
 
 
-14-main 
+14-main
 from models.base import Base
 from models.rectangle import Rectangle
 
