@@ -56,7 +56,7 @@ class Base:
         clastmp.update(**dictionary)
         return clastmp
 
-   """ def load_from_file(cls):
-        pendiente comentario"""
-        with open(cls.__name__ + ".json", mode="r") as read_file:
-"""
+    """ def load_from_file(cls):
+        pendiente comentario
+                with open(cls.__name__ + ".json", mode="r") as read_file:
+    """
