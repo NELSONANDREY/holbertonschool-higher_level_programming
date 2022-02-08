@@ -43,13 +43,13 @@ class Base:
                 write_file.write("[]")
             else:
                 write_file.write(cls.to_json_string(
-                                [element.to_dictionary() for element in list_objs]))
+                        [element.to_dictionary() for element in list_objs]))
 
     @classmethod
     def create(cls, **dictionary):
         """pendiente comentario"""
         if cls.__name__ == "Rectangle":
-            clastmp = cls(1,1)
+            clastmp = cls(1, 1)
         if cls.__name__ == "Square":
             clastmp == cls(1)
         clastmp.update(**dictionary)
