@@ -1,0 +1,116 @@
+::::::::::::
+Funcion
+::::::::::::
+Archivo txt donde se verifican todos los errores posibles
+que puede tener  la función say_my_name() 
+que imprime mi nombre.
+
+Importacion del modulo:
+::::::::::::::::::::::::::::::::::::
+
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+:::::::::::::::::::::::::::::::::::: 
+
+Pruebas:
+:::::::::::::
+
+1 - Se supone que imprime el nombre separado por un espacio.
+
+>>> say_my_name("Juan", "Sebastian")
+My name is Juan Sebastian
+
+2 - Se supone que imprime el primer nombre seguido de un espacio.
+
+>>> say_my_name("Juan",)
+My name is Juan 
+
+3 - Se supone que debe imprimir el segundo nombre y el primero es un espacio
+
+>>> say_my_name("", "Sebastian")
+My name is  Sebastian
+
+4 - Se supon que no debe imprimir nada
+
+>>> say_my_name("", "")
+My name is  
+
+5 - Se supone que no debe imprimir nada
+
+>>> say_my_name("")
+My name is  
+
+6 - Se supone que debe generar una excepción tipo TypeError
+
+>>> say_my_name(4, "Sebastian")
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+
+7 - Se supone que debe generar una excepción tipo TypeError
+
+>>> say_my_name("Juan", 4)
+Traceback (most recent call last):
+...
+TypeError: last_name must be a string
+
+8 - Se supone que debe generar una excepción tipo TypeError
+
+>>> say_my_name("Juan", None)
+Traceback (most recent call last):
+...
+TypeError: last_name must be a string
+
+9 - Se supone que debe generar una excepción tipo TypeError
+
+>>> say_my_name(None, "Juan")
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+
+10 - Se supone que debe generar una excepción tipo TypeError
+
+>>> say_my_name(None, None)
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+
+11 - Se supone que debe generar una excepción tipo TypeError
+
+>>> say_my_name()
+Traceback (most recent call last):
+...
+TypeError: say_my_name() missing 1 required positional argument: 'first_name'
+
+12 - Se supone que debe retornar la cadena completa
+
+>>> say_my_name("Juan", str("S" "A" "G"))
+My name is Juan SAG
+
+13 - Se supone que debe generar una excepción tipo TypeError por mas de dos parametros
+
+>>> say_my_name("Juan", "Sebastian", "Avendaño")
+Traceback (most recent call last):
+...
+TypeError: say_my_name() takes from 1 to 2 positional arguments but 3 were given
+
+14 - Se supone que debe generar una excepción tipo TypeError por parametros boleanos
+
+>>> say_my_name(True, False)
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+
+15 - Se supone que debe generar una excepción tipo TypeError
+
+>>> say_my_name("Juan", ("Sebastian", "Avendaño"))
+Traceback (most recent call last):
+...
+TypeError: last_name must be a string
+
+16 - Se supone que debe generar una excepción tipo TypeError
+
+>>> say_my_name("Juan", ["Sebastian", "Avendaño"])
+Traceback (most recent call last):
+...
+TypeError: last_name must be a string
